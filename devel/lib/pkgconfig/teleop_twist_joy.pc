@@ -1,0 +1,8 @@
+prefix=/home/seu/wsh/catkin_motor/devel
+
+Name: teleop_twist_joy
+Description: Description of teleop_twist_joy
+Version: 0.1.2
+Cflags: -I/home/seu/wsh/catkin_motor/src/teleop_twist_joy/include
+Libs: -L${prefix}/lib -lteleop_twist_joy
+Requires: geometry_msgs roscpp sensor_msgs

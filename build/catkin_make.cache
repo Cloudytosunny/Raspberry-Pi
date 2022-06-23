@@ -1,0 +1,2 @@
+learning_communication:teleop_twist_joy
+-DCATKIN_DEVEL_PREFIX=/home/seu/wsh/catkin_motor/devel -DCMAKE_INSTALL_PREFIX=/home/seu/wsh/catkin_motor/install -G Unix Makefiles

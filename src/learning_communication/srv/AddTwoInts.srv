@@ -1,0 +1,6 @@
+int64 a
+int64 b
+int64[11] c
+float64[8] d
+---
+int64 sum
