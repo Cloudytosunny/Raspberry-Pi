@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ubuntu/wsh/wit/wit_ros_ws/devel/setup.sh

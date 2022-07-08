@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ubuntu/wsh/catkin_TOF/devel/setup.sh

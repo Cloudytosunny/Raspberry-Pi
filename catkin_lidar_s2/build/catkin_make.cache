@@ -1,0 +1,2 @@
+rplidar_ros_s2
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/wsh/catkin_lidar_s2/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/wsh/catkin_lidar_s2/install -G Unix Makefiles
