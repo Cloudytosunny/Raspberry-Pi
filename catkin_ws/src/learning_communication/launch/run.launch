@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="learning_communication" type="talker" name="ranging" output="screen">
+  </node>
+
+</launch>

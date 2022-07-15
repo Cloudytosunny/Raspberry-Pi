@@ -28,6 +28,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   actionlib_msgs 
   actionlib
+  serial
 )
 
 ## System dependencies are found with CMake's conventions
@@ -77,7 +78,7 @@ add_message_files(FILES Person.msg)
 #   Service1.srv
 #   Service2.srv
 # )
-add_service_files(FILES AddTwoInts.srv)
+add_service_files(FILES AddTwoInts.srv getSense.srv)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -154,17 +155,22 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
+FIND_LIBRARY(WIRINGPI_LIBRARY wiringPi home/tymiao/wsh/RS485_CAN/WiringPi/wiringPi)
+##FIND_LIBRARY(WIRINGPI_LIBRARY wiringPi /usr/lib/aarch64-linux-gnu/wiringPi)
+##find_library(WIRINGPI_LIBRARIES NAMES wiringPi)
 add_executable(talker src/talker.cpp)
-target_link_libraries(talker ${catkin_LIBRARIES})
+target_link_libraries(talker ${catkin_LIBRARIES} ${WIRINGPI_LIBRARY})
 #add_dependencies(talker ${PROJECT_NAME}_generate_messages_cpp)
 
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 #add_dependencies(listener ${PROJECT_NAME}_generate_messages_cpp)
 
-FIND_LIBRARY(WIRINGPI_LIBRARY wiringPi home/ubuntu/wsh/RS485_CAN/WiringPi/wiringPi)
+##FIND_LIBRARY(WIRINGPI_LIBRARY wiringPi home/tymiao/wsh/RS485_CAN/WiringPi/wiringPi)
+##FIND_LIBRARY(WIRINGPI_LIBRARY wiringPi /usr/lib/aarch64-linux-gnu/wiringPi)
 add_executable(server src/server.cpp)
 target_link_libraries(server ${catkin_LIBRARIES} ${WIRINGPI_LIBRARY})
+#target_link_libraries(server ${catkin_LIBRARIES})
 add_dependencies(server ${PROJECT_NAME}_gencpp wiringPi) 
 
 add_executable(client src/client.cpp)
