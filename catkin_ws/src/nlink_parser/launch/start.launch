@@ -1,0 +1,44 @@
+<launch>
+  <node pkg="nlink_parser" type="tofsense" name="tofsense0" output="screen">
+    <param name="port_name" type="str" value="/dev/ttyAMA1" />
+    <param name="baud_rate" type="int" value="921600" />
+    <param name="inquire_mode" type="bool" value="false" />
+  </node>
+  
+  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+  <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>  
+  <param name="serial_baudrate"     type="int"    value="1000000"/>
+  <param name="frame_id"            type="string" value="laser"/>
+  <param name="inverted"            type="bool"   value="false"/>
+  <param name="angle_compensate"    type="bool"   value="true"/>
+  </node>
+  
+  <!-- imu型号，默认 normal -->
+  <arg name="type" default="normal" doc="type [normal, modbus]"/>
+
+  <!-- imu 对应 python 文件 -->
+  <node pkg="wit_ros_imu" type="wit_$(arg type)_ros.py" name="imu" output="screen">
+        <param name="port"               type = "str"    value="/dev/ttyAMA2"/>
+        <param name="baud"               type = "int"    value="9600"/>
+  </node>
+  <node pkg="wit_ros_imu" type="get_imu_rpy.py" name="get_imu" output="screen">
+  </node>
+  
+  <node pkg="learning_communication" type="talker" name="ranging" output="screen">
+  </node>
+  
+  <node pkg="learning_communication" type="client" name="clientTOF" output="screen">
+  </node>
+  
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  
+  
+  
+</launch>
